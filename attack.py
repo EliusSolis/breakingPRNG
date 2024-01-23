@@ -7,11 +7,11 @@ POLY_MASK_31 = 0x7A5BC2E3
 class Rand:
     def __init__(self, s1=None, s2=None):
         if s1 is None:
-            s1 = getRandomInteger(32) >> 4 << 4
+            s1 = getRandomInteger(32)
             #print(f"correct is {(s1>>2)%4}")
 
         if s2 is None:
-            s2 = getRandomInteger(32) >> 1 << 1
+            s2 = getRandomInteger(32)
 
         self.lfsr32 = s1
         self.lfsr31 = s2
@@ -99,7 +99,7 @@ class Randcrack:
         self.og_seed_32 += (self.reconstruct_bit(1, self.step) << (self.step * 2 + 1))
 
     def decuce_first_step(self):
-        for guess in range(1):
+        for guess in range(4):
             self.og_seed_32 = guess << 2
             self.og_seed_31 = 0
 
